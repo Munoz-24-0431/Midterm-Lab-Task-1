@@ -354,6 +354,69 @@
             border-radius: 50%;
             pointer-events: none;
         }
+
+        .project-description {
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .process-info {
+            background: rgba(45, 50, 82, 0.4);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            border-left: 4px solid var(--accent-blue);
+        }
+
+        .process-info h3 {
+            color: var(--accent-blue);
+            margin-bottom: 1rem;
+        }
+
+        .process-info ul {
+            list-style: none;
+            margin-left: 1rem;
+        }
+
+        .process-info li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .process-info li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--accent-purple);
+        }
+
+        .process-details {
+            background: rgba(45, 50, 82, 0.3);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+        }
+
+        .process-details ul {
+            list-style: none;
+            margin-left: 1rem;
+        }
+
+        .process-details li {
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-left: 1.5rem;
+            color: var(--text-color);
+        }
+
+        .process-details li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent-purple);
+        }
     </style>
 </head>
 <body>
@@ -367,24 +430,45 @@
         </header>
 
         <section class="content-section">
+            <h2>Project Overview</h2>
+            <p class="project-description">
+                This project focuses on data cleaning and preparation techniques using Excel. The task involves working with raw data to ensure it is accurate, complete, and formatted for analysis. Through this process, we implement various data cleaning techniques and normalize the data structure to improve its quality and usability.
+            </p>
+            
+            <div class="process-info">
+                <h3>Project Objectives</h3>
+                <ul>
+                    <li>Clean and prepare raw data using Excel</li>
+                    <li>Implement data normalization techniques</li>
+                    <li>Create an efficient and organized data structure</li>
+                    <li>Document the transformation process</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="content-section">
             <h2>Step 1 - Data Cleaning Process</h2>
-            <ul>
-                <li>Load the raw file</li>
-                <li>Fit Column and row width and height</li>
-                <li>TRIM extra spaces</li>
-                <li>Remove NULL values</li>
-                <li>Remove Duplication</li>
-            </ul>
+            <div class="process-details">
+                <ul>
+                    <li>Load the raw file</li>
+                    <li>Fit Column and row width and height</li>
+                    <li>TRIM extra spaces</li>
+                    <li>Remove NULL values</li>
+                    <li>Remove Duplication</li>
+                </ul>
+            </div>
         </section>
 
         <section class="content-section">
             <h2>Step 2 - Normalization</h2>
-            <ul>
-                <li>Implemented First Normal Form (1NF) by ensuring all data is atomic</li>
-                <li>Applied Second Normal Form (2NF) to eliminate partial dependencies</li>
-                <li>Carried out Third Normal Form (3NF) by removing transitive dependencies</li>
-                <li>Mapped the normalized tables into a physical data model for implementation</li>
-            </ul>
+            <div class="process-details">
+                <ul>
+                    <li>Implemented First Normal Form (1NF) by ensuring all data is atomic</li>
+                    <li>Applied Second Normal Form (2NF) to eliminate partial dependencies</li>
+                    <li>Carried out Third Normal Form (3NF) by removing transitive dependencies</li>
+                    <li>Mapped the normalized tables into a physical data model for implementation</li>
+                </ul>
+            </div>
         </section>
 
         <section class="content-section">
