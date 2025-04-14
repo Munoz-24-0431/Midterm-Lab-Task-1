@@ -240,23 +240,25 @@
         }
 
         /* Download Button */
+        .download-section {
+            text-align: center;
+            margin: 1rem 0;
+        }
+
         .download-btn {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            padding: 10px 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
             background: rgba(45, 50, 82, 0.8);
             border: 2px solid var(--accent-purple);
             color: var(--text-color);
-            border-radius: 25px;
+            border-radius: 30px;
             text-decoration: none;
-            font-size: 14px;
+            font-size: 16px;
             transition: all 0.3s ease;
             backdrop-filter: blur(5px);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            z-index: 2;
+            cursor: pointer;
         }
 
         .download-btn:hover {
@@ -266,7 +268,30 @@
         }
 
         .download-btn i {
-            font-size: 18px;
+            font-size: 20px;
+        }
+
+        .download-btn .text {
+            position: relative;
+            display: inline-block;
+        }
+
+        .download-btn .text::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background: var(--accent-blue);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+
+        .download-btn:hover .text::after {
+            transform: scaleX(1);
+            transform-origin: left;
         }
 
         /* Galaxy Effects */
@@ -356,8 +381,11 @@
             <div class="image-container" data-fullscreen>
                 <img src="https://github.com/user-attachments/assets/daf9e7ed-2f0f-4621-b5ba-252c7f6e1489" alt="Before Data Cleaning">
                 <div class="image-overlay"></div>
+            </div>
+            <div class="download-section">
                 <a href="https://github.com/user-attachments/files/19741301/Midterm.Lab.Task.1.xlsx" class="download-btn" download>
-                    <i class="fas fa-download"></i>Download Excel File
+                    <i class="fas fa-file-excel"></i>
+                    <span class="text">Download Excel File</span>
                 </a>
             </div>
         </section>
@@ -367,8 +395,11 @@
             <div class="image-container" data-fullscreen>
                 <img src="https://github.com/user-attachments/assets/e13eefdf-86b3-419e-89df-b414af664fb1" alt="After Data Cleaning">
                 <div class="image-overlay"></div>
+            </div>
+            <div class="download-section">
                 <a href="https://github.com/user-attachments/files/19741301/Midterm.Lab.Task.1.xlsx" class="download-btn" download>
-                    <i class="fas fa-download"></i>Download Excel File
+                    <i class="fas fa-file-excel"></i>
+                    <span class="text">Download Excel File</span>
                 </a>
             </div>
         </section>
@@ -378,8 +409,11 @@
             <div class="image-container" data-fullscreen>
                 <img src="https://github.com/user-attachments/assets/a03dabb7-3516-4887-b328-ed08f3d8b75f" alt="Physical Data Model">
                 <div class="image-overlay"></div>
+            </div>
+            <div class="download-section">
                 <a href="https://github.com/user-attachments/files/19741301/Midterm.Lab.Task.1.xlsx" class="download-btn" download>
-                    <i class="fas fa-download"></i>Download Excel File
+                    <i class="fas fa-file-excel"></i>
+                    <span class="text">Download Excel File</span>
                 </a>
             </div>
         </section>
