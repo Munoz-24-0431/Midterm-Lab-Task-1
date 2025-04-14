@@ -84,6 +84,7 @@
             transform: translateY(30px);
             opacity: 0;
             animation: fadeInUp 1s ease forwards 0.3s;
+            cursor: pointer;
         }
 
         .image-container img {
@@ -179,6 +180,144 @@
             0%, 100% { opacity: 1; transform: scale(1); }
             50% { opacity: 0.3; transform: scale(0.8); }
         }
+
+        /* Fullscreen Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 11, 26, 0.95);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .modal.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: modalFadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90vh;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(157, 78, 221, 0.3);
+        }
+
+        .modal-content img {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(45, 50, 82, 0.8);
+            border: 2px solid var(--accent-purple);
+            color: var(--text-color);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: var(--accent-purple);
+            transform: rotate(90deg);
+        }
+
+        /* Download Button */
+        .download-btn {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: rgba(45, 50, 82, 0.8);
+            border: 2px solid var(--accent-purple);
+            color: var(--text-color);
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 2;
+        }
+
+        .download-btn:hover {
+            background: var(--accent-purple);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(157, 78, 221, 0.3);
+        }
+
+        .download-btn i {
+            font-size: 18px;
+        }
+
+        /* Galaxy Effects */
+        .image-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent,
+                rgba(157, 78, 221, 0.1),
+                rgba(72, 191, 227, 0.1),
+                transparent
+            );
+            transform: rotate(45deg);
+            animation: galaxyShine 3s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes galaxyShine {
+            0% {
+                transform: rotate(45deg) translateX(-100%);
+            }
+            100% {
+                transform: rotate(45deg) translateX(100%);
+            }
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Stars particle effect */
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--star-color);
+            border-radius: 50%;
+            pointer-events: none;
+        }
     </style>
 </head>
 <body>
@@ -214,28 +353,47 @@
 
         <section class="content-section">
             <h2>Step 3 - Before Data Cleaning</h2>
-            <div class="image-container">
+            <div class="image-container" data-fullscreen>
                 <img src="https://github.com/user-attachments/assets/daf9e7ed-2f0f-4621-b5ba-252c7f6e1489" alt="Before Data Cleaning">
                 <div class="image-overlay"></div>
+                <a href="https://github.com/user-attachments/files/19741301/Midterm.Lab.Task.1.xlsx" class="download-btn" download>
+                    <i class="fas fa-download"></i>Download Excel File
+                </a>
             </div>
         </section>
 
         <section class="content-section">
             <h2>Step 4 - After Data Cleaning</h2>
-            <div class="image-container">
+            <div class="image-container" data-fullscreen>
                 <img src="https://github.com/user-attachments/assets/e13eefdf-86b3-419e-89df-b414af664fb1" alt="After Data Cleaning">
                 <div class="image-overlay"></div>
+                <a href="https://github.com/user-attachments/files/19741301/Midterm.Lab.Task.1.xlsx" class="download-btn" download>
+                    <i class="fas fa-download"></i>Download Excel File
+                </a>
             </div>
         </section>
 
         <section class="content-section">
             <h2>Physical Data Model</h2>
-            <div class="image-container">
+            <div class="image-container" data-fullscreen>
                 <img src="https://github.com/user-attachments/assets/a03dabb7-3516-4887-b328-ed08f3d8b75f" alt="Physical Data Model">
                 <div class="image-overlay"></div>
+                <a href="https://github.com/user-attachments/files/19741301/Midterm.Lab.Task.1.xlsx" class="download-btn" download>
+                    <i class="fas fa-download"></i>Download Excel File
+                </a>
             </div>
         </section>
     </div>
+
+    <!-- Modal for fullscreen images -->
+    <div class="modal">
+        <div class="modal-content">
+            <img src="" alt="">
+            <button class="modal-close">×</button>
+        </div>
+    </div>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <script>
         // Create stars
@@ -275,6 +433,78 @@
 
         document.querySelectorAll('.content-section').forEach(el => {
             observer.observe(el);
+        });
+
+        // Fullscreen Image Modal
+        const modal = document.querySelector('.modal');
+        const modalImg = modal.querySelector('img');
+        const closeBtn = modal.querySelector('.modal-close');
+        const images = document.querySelectorAll('.image-container[data-fullscreen]');
+
+        images.forEach(container => {
+            container.addEventListener('click', (e) => {
+                if (e.target.classList.contains('download-btn')) return;
+                const img = container.querySelector('img');
+                modalImg.src = img.src;
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        closeBtn.addEventListener('click', () => {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Galaxy Particle Effect
+        function createParticle(x, y) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            document.body.appendChild(particle);
+
+            const destinationX = x + (Math.random() - 0.5) * 200;
+            const destinationY = y + (Math.random() - 0.5) * 200;
+            const rotation = Math.random() * 520;
+            const delay = Math.random() * 200;
+
+            particle.style.left = `${x}px`;
+            particle.style.top = `${y}px`;
+            
+            particle.style.transform = `rotate(${rotation}deg)`;
+            particle.style.opacity = '0';
+
+            setTimeout(() => {
+                particle.style.transition = 'all 1s ease-out';
+                particle.style.left = `${destinationX}px`;
+                particle.style.top = `${destinationY}px`;
+                particle.style.opacity = '1';
+                
+                setTimeout(() => {
+                    particle.style.opacity = '0';
+                    setTimeout(() => {
+                        particle.remove();
+                    }, 1000);
+                }, 500);
+            }, delay);
+        }
+
+        // Add particle effect on image hover
+        images.forEach(container => {
+            container.addEventListener('mousemove', (e) => {
+                const rect = container.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                if (Math.random() < 0.1) {
+                    createParticle(e.clientX, e.clientY);
+                }
+            });
         });
     </script>
 </body>
