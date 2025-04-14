@@ -240,22 +240,34 @@
         }
 
         /* Download Button */
-        .download-section {
+        .main-download-section {
             text-align: center;
-            margin: 1rem 0;
+            margin: 3rem 0;
+            padding: 2rem;
+            background: rgba(45, 50, 82, 0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(157, 78, 221, 0.2);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .main-download-section h2 {
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            color: var(--accent-blue);
         }
 
         .download-btn {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            padding: 12px 25px;
+            gap: 15px;
+            padding: 15px 30px;
             background: rgba(45, 50, 82, 0.8);
             border: 2px solid var(--accent-purple);
             color: var(--text-color);
             border-radius: 30px;
             text-decoration: none;
-            font-size: 16px;
+            font-size: 18px;
             transition: all 0.3s ease;
             backdrop-filter: blur(5px);
             cursor: pointer;
@@ -264,16 +276,15 @@
         .download-btn:hover {
             background: var(--accent-purple);
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(157, 78, 221, 0.3);
+            box-shadow: 0 5px 20px rgba(157, 78, 221, 0.4);
         }
 
         .download-btn i {
-            font-size: 20px;
+            font-size: 24px;
         }
 
         .download-btn .text {
             position: relative;
-            display: inline-block;
         }
 
         .download-btn .text::after {
@@ -281,7 +292,7 @@
             position: absolute;
             width: 100%;
             height: 2px;
-            bottom: -2px;
+            bottom: -4px;
             left: 0;
             background: var(--accent-blue);
             transform: scaleX(0);
@@ -382,12 +393,6 @@
                 <img src="https://github.com/user-attachments/assets/daf9e7ed-2f0f-4621-b5ba-252c7f6e1489" alt="Before Data Cleaning">
                 <div class="image-overlay"></div>
             </div>
-            <div class="download-section">
-                <a href="https://github.com/user-attachments/files/19741301/Midterm.Lab.Task.1.xlsx" class="download-btn" download>
-                    <i class="fas fa-file-excel"></i>
-                    <span class="text">Download Excel File</span>
-                </a>
-            </div>
         </section>
 
         <section class="content-section">
@@ -395,12 +400,6 @@
             <div class="image-container" data-fullscreen>
                 <img src="https://github.com/user-attachments/assets/e13eefdf-86b3-419e-89df-b414af664fb1" alt="After Data Cleaning">
                 <div class="image-overlay"></div>
-            </div>
-            <div class="download-section">
-                <a href="https://github.com/user-attachments/files/19741301/Midterm.Lab.Task.1.xlsx" class="download-btn" download>
-                    <i class="fas fa-file-excel"></i>
-                    <span class="text">Download Excel File</span>
-                </a>
             </div>
         </section>
 
@@ -410,12 +409,14 @@
                 <img src="https://github.com/user-attachments/assets/a03dabb7-3516-4887-b328-ed08f3d8b75f" alt="Physical Data Model">
                 <div class="image-overlay"></div>
             </div>
-            <div class="download-section">
-                <a href="https://github.com/user-attachments/files/19741301/Midterm.Lab.Task.1.xlsx" class="download-btn" download>
-                    <i class="fas fa-file-excel"></i>
-                    <span class="text">Download Excel File</span>
-                </a>
-            </div>
+        </section>
+
+        <section class="main-download-section">
+            <h2>Download Project File</h2>
+            <a href="https://github.com/user-attachments/files/19741301/Midterm.Lab.Task.1.xlsx" class="download-btn" download>
+                <i class="fas fa-file-excel"></i>
+                <span class="text">Click here to download the Excel file</span>
+            </a>
         </section>
     </div>
 
