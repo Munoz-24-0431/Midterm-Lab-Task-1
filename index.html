@@ -126,21 +126,31 @@
         }
 
         ul {
-            list-style-type: none;
-            margin-left: 1rem;
-        }
-
-        li {
-            margin-bottom: 0.5rem;
-            position: relative;
+            list-style: none;
             padding-left: 1.5rem;
         }
 
-        li::before {
-            content: '•';
+        ul li {
+            position: relative;
+            margin-bottom: 0.8rem;
+        }
+
+        ul li::before {
+            content: '★';
+            color: var(--accent-blue);
             position: absolute;
-            left: 0;
-            color: var(--accent-purple);
+            left: -1.5rem;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .process-list li::before {
+            content: '★';
+            color: var(--accent-blue);
+            position: absolute;
+            left: -1.5rem;
+            font-size: 0.8rem;
+            font-weight: bold;
         }
 
         @keyframes glow {
@@ -386,10 +396,12 @@
         }
 
         .process-info li::before {
-            content: '•';
+            content: '★';
+            color: var(--accent-blue);
             position: absolute;
             left: 0;
-            color: var(--accent-purple);
+            font-size: 0.8rem;
+            font-weight: bold;
         }
 
         .process-details {
@@ -412,10 +424,12 @@
         }
 
         .process-details li::before {
-            content: '→';
+            content: '★';
+            color: var(--accent-blue);
             position: absolute;
             left: 0;
-            color: var(--accent-purple);
+            font-size: 0.8rem;
+            font-weight: bold;
         }
     </style>
 </head>
