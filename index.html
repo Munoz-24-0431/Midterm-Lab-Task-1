@@ -85,6 +85,10 @@
             opacity: 0;
             animation: fadeInUp 1s ease forwards 0.3s;
             cursor: pointer;
+            background: rgba(45, 50, 82, 0.3);
+            padding: 1rem;
+            border: 1px solid rgba(157, 78, 221, 0.2);
+            transition: all 0.5s ease;
         }
 
         .image-container img {
@@ -95,7 +99,8 @@
         }
 
         .image-container:hover img {
-            transform: scale(1.02);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 30px rgba(157, 78, 221, 0.3);
         }
 
         .image-overlay {
@@ -133,15 +138,29 @@
         ul li {
             position: relative;
             margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            transition: all 0.3s ease;
         }
 
         ul li::before {
             content: '★';
             color: var(--accent-blue);
             position: absolute;
-            left: -1.5rem;
+            left: 0;
             font-size: 0.8rem;
             font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        ul li:hover {
+            transform: translateX(10px);
+            color: var(--accent-blue);
+            text-shadow: 0 0 8px rgba(72, 191, 227, 0.5);
+        }
+
+        ul li:hover::before {
+            transform: rotate(180deg);
+            color: var(--accent-purple);
         }
 
         .process-list li::before {
@@ -218,6 +237,9 @@
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 0 30px rgba(157, 78, 221, 0.3);
+            transform: scale(0.95);
+            opacity: 0;
+            transition: all 0.3s ease;
         }
 
         .modal-content img {
@@ -258,7 +280,12 @@
             backdrop-filter: blur(10px);
             border-radius: 20px;
             border: 1px solid rgba(157, 78, 221, 0.2);
-            animation: fadeInUp 1s ease forwards;
+            transition: all 0.3s ease;
+        }
+
+        .main-download-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(157, 78, 221, 0.3);
         }
 
         .main-download-section h2 {
@@ -363,88 +390,167 @@
             background: var(--star-color);
             border-radius: 50%;
             pointer-events: none;
+            z-index: 9997;
+            transition: all 1s ease-out;
         }
 
+        /* Enhanced project description */
         .project-description {
             line-height: 1.8;
             margin-bottom: 2rem;
             font-size: 1.1rem;
+            padding: 1.5rem;
+            background: rgba(45, 50, 82, 0.3);
+            border-radius: 10px;
+            border-left: 4px solid var(--accent-purple);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
+        .project-description:hover {
+            transform: translateY(-5px) scale(1.01);
+            background: rgba(45, 50, 82, 0.5);
+            box-shadow: 0 10px 30px rgba(157, 78, 221, 0.3);
+            border-left-color: var(--accent-blue);
+        }
+
+        .project-description::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent,
+                rgba(157, 78, 221, 0.1),
+                rgba(72, 191, 227, 0.1),
+                transparent
+            );
+            transform: rotate(45deg);
+            animation: descriptionShine 3s linear infinite;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-description:hover::before {
+            opacity: 1;
+        }
+
+        @keyframes descriptionShine {
+            0% {
+                transform: rotate(45deg) translateX(-100%);
+            }
+            100% {
+                transform: rotate(45deg) translateX(100%);
+            }
+        }
+
+        /* Enhanced process info */
         .process-info {
             background: rgba(45, 50, 82, 0.4);
             padding: 1.5rem;
             border-radius: 10px;
             margin: 1rem 0;
             border-left: 4px solid var(--accent-blue);
-        }
-
-        .process-info h3 {
-            color: var(--accent-blue);
-            margin-bottom: 1rem;
-        }
-
-        .process-info ul {
-            list-style: none;
-            margin-left: 1rem;
-        }
-
-        .process-info li {
-            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
             position: relative;
-            padding-left: 1.5rem;
+            overflow: hidden;
         }
 
-        .process-info li::before {
-            content: '★';
-            color: var(--accent-blue);
+        .process-info:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(157, 78, 221, 0.3);
+            border-left-color: var(--accent-purple);
+        }
+
+        .process-info::before {
+            content: '';
             position: absolute;
-            left: 0;
-            font-size: 0.8rem;
-            font-weight: bold;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent,
+                rgba(157, 78, 221, 0.1),
+                rgba(72, 191, 227, 0.1),
+                transparent
+            );
+            transform: rotate(45deg);
+            animation: infoShine 3s linear infinite;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
+        .process-info:hover::before {
+            opacity: 1;
+        }
+
+        @keyframes infoShine {
+            0% {
+                transform: rotate(45deg) translateX(-100%);
+            }
+            100% {
+                transform: rotate(45deg) translateX(100%);
+            }
+        }
+
+        /* Enhanced process details */
         .process-details {
             background: rgba(45, 50, 82, 0.3);
             padding: 1.5rem;
             border-radius: 10px;
             margin: 1rem 0;
-        }
-
-        .process-details ul {
-            list-style: none;
-            margin-left: 1rem;
-        }
-
-        .process-details li {
-            margin-bottom: 0.8rem;
-            position: relative;
-            padding-left: 1.5rem;
-            color: var(--text-color);
-        }
-
-        .process-details li::before {
-            content: '★';
-            color: var(--accent-blue);
-            position: absolute;
-            left: 0;
-            font-size: 0.8rem;
-            font-weight: bold;
-        }
-
-        .process-details li:hover {
-            transform: translateX(10px);
-            transition: transform 0.3s ease;
-            color: var(--accent-blue);
-            text-shadow: 0 0 8px rgba(72, 191, 227, 0.5);
-        }
-
-        .project-description:hover {
-            background: rgba(45, 50, 82, 0.5);
-            padding: 1rem;
-            border-radius: 10px;
+            border-left: 4px solid var(--accent-purple);
             transition: all 0.3s ease;
-            box-shadow: 0 0 20px rgba(157, 78, 221, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .process-details:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(157, 78, 221, 0.3);
+            border-left-color: var(--accent-blue);
+        }
+
+        .process-details::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent,
+                rgba(157, 78, 221, 0.1),
+                rgba(72, 191, 227, 0.1),
+                transparent
+            );
+            transform: rotate(45deg);
+            animation: detailsShine 3s linear infinite;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .process-details:hover::before {
+            opacity: 1;
+        }
+
+        @keyframes detailsShine {
+            0% {
+                transform: rotate(45deg) translateX(-100%);
+            }
+            100% {
+                transform: rotate(45deg) translateX(100%);
+            }
         }
 
         /* Enhanced cursor styles */
@@ -507,6 +613,11 @@
         .content-section h2 {
             position: relative;
             display: inline-block;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, var(--accent-purple), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 3s ease-in-out infinite;
         }
 
         .content-section h2::after {
@@ -528,6 +639,124 @@
             transform: translateY(-5px);
             box-shadow: 0 5px 15px rgba(157, 78, 221, 0.3);
             transition: all 0.3s ease;
+        }
+
+        /* Enhanced interactive features */
+        .custom-cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--accent-purple);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.2s ease;
+            mix-blend-mode: difference;
+        }
+
+        .custom-cursor::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 6px;
+            height: 6px;
+            background: var(--accent-blue);
+            border-radius: 50%;
+            transition: all 0.2s ease;
+        }
+
+        .custom-cursor.hover {
+            transform: scale(1.5);
+            background: rgba(157, 78, 221, 0.2);
+            border-color: var(--accent-blue);
+        }
+
+        .cursor-trail {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: linear-gradient(45deg, var(--accent-purple), var(--accent-blue));
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            opacity: 0.8;
+            transition: opacity 0.5s ease;
+            animation: trailFade 0.5s ease forwards;
+        }
+
+        @keyframes trailFade {
+            0% {
+                opacity: 0.8;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0.2);
+            }
+        }
+
+        /* Enhanced text interactions */
+        .step-title:hover {
+            transform: translateX(10px);
+            transition: transform 0.3s ease;
+        }
+
+        .code-block {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .code-block:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(157, 78, 221, 0.3);
+        }
+
+        .code-block::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(157, 78, 221, 0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .code-block:hover::before {
+            transform: translateX(100%);
+        }
+
+        .step-section ul li {
+            transition: all 0.3s ease;
+        }
+
+        .step-section ul li:hover {
+            transform: translateX(10px);
+            color: var(--accent-blue);
+            text-shadow: 0 0 8px rgba(72, 191, 227, 0.5);
+        }
+
+        .project-description:hover {
+            background: rgba(45, 50, 82, 0.5);
+            padding: 1rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(157, 78, 221, 0.2);
+        }
+
+        /* Particle effect */
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--star-color);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9997;
         }
     </style>
 </head>
@@ -715,12 +944,12 @@
             document.addEventListener('mousemove', updateCursor);
 
             // Enhanced hover effects on interactive elements
-            const interactiveElements = document.querySelectorAll('a, button, .content-section, .image-container, .download-btn, .process-details li, .process-info');
+            const interactiveElements = document.querySelectorAll('a, button, .content-section, .image-container, .download-btn, .step-title, .process-info, .process-details');
             
             interactiveElements.forEach(el => {
                 el.addEventListener('mouseenter', () => {
                     cursor.classList.add('hover');
-                    if (el.classList.contains('process-details') || el.classList.contains('process-info')) {
+                    if (el.classList.contains('process-info') || el.classList.contains('process-details')) {
                         createParticleExplosion(el);
                     }
                 });
@@ -738,6 +967,36 @@
                 for (let i = 0; i < 8; i++) {
                     createParticle(centerX, centerY);
                 }
+            }
+
+            function createParticle(x, y) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                document.body.appendChild(particle);
+
+                const destinationX = x + (Math.random() - 0.5) * 200;
+                const destinationY = y + (Math.random() - 0.5) * 200;
+                const rotation = Math.random() * 520;
+                const delay = Math.random() * 200;
+
+                particle.style.left = `${x}px`;
+                particle.style.top = `${y}px`;
+                particle.style.transform = `rotate(${rotation}deg)`;
+                particle.style.opacity = '0';
+
+                setTimeout(() => {
+                    particle.style.transition = 'all 1s ease-out';
+                    particle.style.left = `${destinationX}px`;
+                    particle.style.top = `${destinationY}px`;
+                    particle.style.opacity = '1';
+                    
+                    setTimeout(() => {
+                        particle.style.opacity = '0';
+                        setTimeout(() => {
+                            particle.remove();
+                        }, 1000);
+                    }, 500);
+                }, delay);
             }
         });
 
@@ -784,50 +1043,6 @@
                 modal.classList.remove('active');
                 document.body.style.overflow = '';
             }
-        });
-
-        // Galaxy Particle Effect
-        function createParticle(x, y) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            document.body.appendChild(particle);
-
-            const destinationX = x + (Math.random() - 0.5) * 200;
-            const destinationY = y + (Math.random() - 0.5) * 200;
-            const rotation = Math.random() * 520;
-            const delay = Math.random() * 200;
-
-            particle.style.left = `${x}px`;
-            particle.style.top = `${y}px`;
-            
-            particle.style.transform = `rotate(${rotation}deg)`;
-            particle.style.opacity = '0';
-
-            setTimeout(() => {
-                particle.style.transition = 'all 1s ease-out';
-                particle.style.left = `${destinationX}px`;
-                particle.style.top = `${destinationY}px`;
-                particle.style.opacity = '1';
-                
-                setTimeout(() => {
-                    particle.style.opacity = '0';
-                    setTimeout(() => {
-                        particle.remove();
-                    }, 1000);
-                }, 500);
-            }, delay);
-        }
-
-        // Add particle effect on image hover
-        images.forEach(container => {
-            container.addEventListener('mousemove', (e) => {
-                const rect = container.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                if (Math.random() < 0.1) {
-                    createParticle(e.clientX, e.clientY);
-                }
-            });
         });
     </script>
 </body>
