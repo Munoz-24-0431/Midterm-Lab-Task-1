@@ -221,13 +221,15 @@
             background: rgba(10, 11, 26, 0.95);
             z-index: 1000;
             backdrop-filter: blur(10px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .modal.active {
             display: flex;
             justify-content: center;
             align-items: center;
-            animation: modalFadeIn 0.3s ease;
+            opacity: 1;
         }
 
         .modal-content {
@@ -242,10 +244,16 @@
             transition: all 0.3s ease;
         }
 
+        .modal.active .modal-content {
+            transform: scale(1);
+            opacity: 1;
+        }
+
         .modal-content img {
             width: 100%;
             height: auto;
             border-radius: 15px;
+            display: block;
         }
 
         .modal-close {
@@ -1018,31 +1026,55 @@
         });
 
         // Fullscreen Image Modal
-        const modal = document.querySelector('.modal');
-        const modalImg = modal.querySelector('img');
-        const closeBtn = modal.querySelector('.modal-close');
-        const images = document.querySelectorAll('.image-container[data-fullscreen]');
+        document.addEventListener('DOMContentLoaded', () => {
+            const modal = document.querySelector('.modal');
+            const modalImg = modal.querySelector('img');
+            const closeBtn = modal.querySelector('.modal-close');
+            const images = document.querySelectorAll('.image-container[data-fullscreen]');
 
-        images.forEach(container => {
-            container.addEventListener('click', (e) => {
-                if (e.target.classList.contains('download-btn')) return;
-                const img = container.querySelector('img');
-                modalImg.src = img.src;
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden';
+            images.forEach(container => {
+                container.addEventListener('click', (e) => {
+                    const img = container.querySelector('img');
+                    if (img && !e.target.classList.contains('download-btn')) {
+                        modalImg.src = img.src;
+                        modalImg.alt = img.alt;
+                        modal.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                        setTimeout(() => {
+                            modal.querySelector('.modal-content').style.opacity = '1';
+                        }, 50);
+                    }
+                });
             });
-        });
 
-        closeBtn.addEventListener('click', () => {
-            modal.classList.remove('active');
-            document.body.style.overflow = '';
-        });
+            closeBtn.addEventListener('click', () => {
+                modal.querySelector('.modal-content').style.opacity = '0';
+                setTimeout(() => {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }, 300);
+            });
 
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.classList.remove('active');
-                document.body.style.overflow = '';
-            }
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.querySelector('.modal-content').style.opacity = '0';
+                    setTimeout(() => {
+                        modal.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }, 300);
+                }
+            });
+
+            // Close modal with Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modal.classList.contains('active')) {
+                    modal.querySelector('.modal-content').style.opacity = '0';
+                    setTimeout(() => {
+                        modal.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }, 300);
+                }
+            });
         });
     </script>
 </body>
