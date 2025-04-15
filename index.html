@@ -191,7 +191,7 @@
             50% { opacity: 0.3; transform: scale(0.8); }
         }
 
-        /* Fullscreen Modal */
+        /* Modal styles */
         .modal {
             display: none;
             position: fixed;
@@ -431,11 +431,110 @@
             font-size: 0.8rem;
             font-weight: bold;
         }
+
+        .process-details li:hover {
+            transform: translateX(10px);
+            transition: transform 0.3s ease;
+            color: var(--accent-blue);
+            text-shadow: 0 0 8px rgba(72, 191, 227, 0.5);
+        }
+
+        .project-description:hover {
+            background: rgba(45, 50, 82, 0.5);
+            padding: 1rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(157, 78, 221, 0.2);
+        }
+
+        /* Enhanced cursor styles */
+        .custom-cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--accent-purple);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.2s ease;
+            mix-blend-mode: difference;
+        }
+
+        .custom-cursor::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 6px;
+            height: 6px;
+            background: var(--accent-blue);
+            border-radius: 50%;
+            transition: all 0.2s ease;
+        }
+
+        .custom-cursor.hover {
+            transform: scale(1.5);
+            background: rgba(157, 78, 221, 0.2);
+            border-color: var(--accent-blue);
+        }
+
+        .cursor-trail {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: linear-gradient(45deg, var(--accent-purple), var(--accent-blue));
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            opacity: 0.8;
+            transition: opacity 0.5s ease;
+            animation: trailFade 0.5s ease forwards;
+        }
+
+        @keyframes trailFade {
+            0% {
+                opacity: 0.8;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0.2);
+            }
+        }
+
+        /* Interactive text animations */
+        .content-section h2 {
+            position: relative;
+            display: inline-block;
+        }
+
+        .content-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-purple), var(--accent-blue));
+            transition: width 0.3s ease;
+        }
+
+        .content-section h2:hover::after {
+            width: 100%;
+        }
+
+        .process-info:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(157, 78, 221, 0.3);
+            transition: all 0.3s ease;
+        }
     </style>
 </head>
 <body>
     <div class="cosmic-background"></div>
     <div class="stars"></div>
+    <div class="custom-cursor"></div>
 
     <div class="container">
         <header class="header">
@@ -551,6 +650,97 @@
             createStars();
         });
 
+        // Enhanced Meteor Cursor Effect
+        document.addEventListener('DOMContentLoaded', () => {
+            const cursor = document.querySelector('.custom-cursor');
+            let isMoving = false;
+            let moveTimeout;
+            let lastX = 0;
+            let lastY = 0;
+            let velocity = { x: 0, y: 0 };
+
+            function updateCursor(e) {
+                const currentX = e.clientX;
+                const currentY = e.clientY;
+                
+                // Calculate velocity
+                velocity.x = currentX - lastX;
+                velocity.y = currentY - lastY;
+                
+                cursor.style.left = currentX + 'px';
+                cursor.style.top = currentY + 'px';
+
+                const speed = Math.sqrt(velocity.x * velocity.x + velocity.y * velocity.y);
+                
+                if (!isMoving) {
+                    isMoving = true;
+                    cursor.style.transform = `translate(-50%, -50%) scale(${0.8 + speed * 0.01})`;
+                }
+
+                clearTimeout(moveTimeout);
+                moveTimeout = setTimeout(() => {
+                    isMoving = false;
+                    cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+                }, 100);
+
+                // Create more trails based on movement speed
+                if (speed > 5) {
+                    for (let i = 0; i < Math.min(speed / 5, 3); i++) {
+                        createTrail(currentX, currentY, speed);
+                    }
+                }
+
+                lastX = currentX;
+                lastY = currentY;
+            }
+
+            function createTrail(x, y, speed) {
+                const trail = document.createElement('div');
+                trail.className = 'cursor-trail';
+                trail.style.left = x + 'px';
+                trail.style.top = y + 'px';
+                
+                // Adjust trail size based on cursor speed
+                const size = Math.min(4 + speed * 0.2, 8);
+                trail.style.width = `${size}px`;
+                trail.style.height = `${size}px`;
+                
+                document.body.appendChild(trail);
+
+                setTimeout(() => {
+                    trail.remove();
+                }, 500);
+            }
+
+            document.addEventListener('mousemove', updateCursor);
+
+            // Enhanced hover effects on interactive elements
+            const interactiveElements = document.querySelectorAll('a, button, .content-section, .image-container, .download-btn, .process-details li, .process-info');
+            
+            interactiveElements.forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursor.classList.add('hover');
+                    if (el.classList.contains('process-details') || el.classList.contains('process-info')) {
+                        createParticleExplosion(el);
+                    }
+                });
+                
+                el.addEventListener('mouseleave', () => {
+                    cursor.classList.remove('hover');
+                });
+            });
+
+            function createParticleExplosion(element) {
+                const rect = element.getBoundingClientRect();
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+
+                for (let i = 0; i < 8; i++) {
+                    createParticle(centerX, centerY);
+                }
+            }
+        });
+
         // Intersection Observer for animations
         const observer = new IntersectionObserver(
             (entries) => {
@@ -641,4 +831,4 @@
         });
     </script>
 </body>
-</html> 
+</html>
